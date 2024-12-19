@@ -27,7 +27,7 @@ const server = new ApolloServer({
 });
 
 const { url } = await startStandaloneServer(server, {
-  context: async () => ({ 
+  context: async () =>  ({
     UserCollection: UsersCollection,
     PostCollection: PostsCollection,
     CommentCollection: CommentsCollection,

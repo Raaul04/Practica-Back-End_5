@@ -1,27 +1,39 @@
-export const schema=`#graphql
+export const schema = `#graphql
 
 input UpdateUserInput {
     name: String
     email: String
     password: String
-    posts: [ID!] 
-   comments: [ID!] 
-   likedPosts: [ID!]
-  }
+}
 
 input CreateUserInput {
     name: String!
     email: String!
     password: String!
-    posts: [ID!] 
-   comments: [ID!] 
-   likedPosts: [ID!]
-  }
+}
+
+input CreatePostInput {
+    content: String!
+    author: ID!
+}
+
+input UpdatePostInput {
+    content: String
+}
+
+input CreateCommentInput {
+    text: String!
+    author: ID!
+    post: ID!
+}
+
+input UpdateCommentInput {
+    text: String
+}
 
 type User {
   id: ID!
   name: String!
-  password: String!
   email: String!
   posts: [Post!]!
   comments: [Comment!]!
@@ -54,17 +66,12 @@ type Query {
   comments: [Comment!]!
   comment(id: ID!): Comment
 }
-#Mutations
+ 
+# Mutations
 type Mutation {
   createUser(input: CreateUserInput!): User!
   updateUser(id: ID!, input: UpdateUserInput!): User!
   deleteUser(id: ID!): Boolean!
-}
-
-`;
-
-/*
-  
  
   createPost(input: CreatePostInput!): Post!
   updatePost(id: ID!, input: UpdatePostInput!): Post!
@@ -76,5 +83,6 @@ type Mutation {
   createComment(input: CreateCommentInput!): Comment!
   updateComment(id: ID!, input: UpdateCommentInput!): Comment!
   deleteComment(id: ID!): Boolean!
-*/
+}
 
+`;
